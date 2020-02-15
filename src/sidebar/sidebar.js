@@ -87,20 +87,15 @@ class SidebarComponent extends React.Component {
     }
     searchNotes(event) {
         this.setState({ search: event.target.value.substr(0, 20) });
-
     }
 
     handle(txt, event) {
-        console.log("in handle " + event.which);
         if (event.which === 13) {
-            console.log("in if");
-            event.preventDefault(); // Ensure it is only this code that rusn
+            event.preventDefault();
             if (txt !== '') {
+                this.setState({ title: null, addingNote: !this.state.addingNote, search: '' })
                 this.props.newNote(txt);
-                this.setState({ title: null, addingNote: false });
             }
-            console.log("Enter was pressed was presses");
-
         }
 }
     selectNote = (n, i) => this.props.selectNote(n, i);
